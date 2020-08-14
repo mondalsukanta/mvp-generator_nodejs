@@ -33,9 +33,3 @@ Output file ./output/pipeline.yml
 Generating Deployment File
 Template file ./templates/kubernates/deployment.txt
 Output file ./output/deployment.yml
-
-#https://github.com/intuit/node-pom-parser
-#Set EXPO_DEBUG=true
-#npm config set package-lock false
-#npm install
-#npm install --save pom-parser
