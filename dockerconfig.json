@@ -1,0 +1,13 @@
+{
+   "templateBase":"./templates/docker",
+   "templateName":"dockerfile-java-maven-template.txt",
+   "outputBase":"./output",
+   "outputFile":"Dockerfile",
+   "placeholder":{
+      "tech":"MAVEN",
+      "projectName":"Test",
+      "appPort":"8080",
+      "javaVersion":"11",
+      "finalName":"mvp-generator-0.0.1-SNAPSHOT.jar"
+   }
+ }

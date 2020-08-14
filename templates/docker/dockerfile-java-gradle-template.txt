@@ -1,0 +1,54 @@
+## 1. Specify base image or sdk image
+[# th:if="${javaVersion == '8'}"]
+FROM openjdk:8-jdk-alpine
+[/]
+[# th:if="${javaVersion == '11'}"]
+FROM openjdk:11-jdk-slim
+[/]
+
+## Install Maven
+FROM maven:3.6.3-slim
+
+## Create app directory
+WORKDIR /usr/src/app
+
+## Copy files which contains project dependencies
+COPY pom.xml /usr/src/app
+
+## Restore Dependencies
+RUN mvn -T 1C install && rm -rf target
+
+## Copy all source codes from application / microservice
+COPY src ./
+
+## Bundle app source
+RUN mvn install
+
+#######################################
+
+
+## 1. Specify runtime base image
+[# th:if="${javaVersion == '8'}"]
+#FROM openjdk:8-jdk-alpine
+[/]
+[# th:if="${javaVersion == '11'}"]
+#FROM openjdk:11-jdk-slim
+[/]
+
+## 2. Specify work directory
+## WORKDIR /app
+
+## 3. Copy build output from section 1
+## COPY --from=build-env /app/out .
+## ADD ["/usr/src/app/target/[[${finalName}]]", "app.jar"]
+
+## 4. Expose application port
+# EXPOSE [[${appPort}]] [[${appPort}]]
+
+## Update timestamp of the artifact
+## RUN sh -c 'touch /app.jar'
+
+## 5. Start application using CMD or Entrypoint
+## ENTRYPOINT ["java", "-cp", "app:app/lib/*", "app"]
+ENTRYPOINT ["java" , "-jar", "target/[[${finalName}]]" ]
+

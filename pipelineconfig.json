@@ -1,0 +1,10 @@
+{
+  "templateBase":"./templates/cicd",
+  "templateName":"pipeline.txt",
+  "outputBase":"./output",
+  "outputFile":"pipeline.yml",
+  "placeholder":{
+     "projectName":"Test",
+     "appPort":"8080"
+  }
+}

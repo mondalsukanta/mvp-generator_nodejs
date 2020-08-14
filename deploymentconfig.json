@@ -1,0 +1,10 @@
+{
+   "templateBase":"./templates/kubernates",
+   "templateName":"deployment.txt", 
+   "outputBase":"./output",
+   "outputFile":"deployment.yml",
+   "placeholder":{
+       "projectName":"Test",
+       "appPort":"8080"
+   }
+  }

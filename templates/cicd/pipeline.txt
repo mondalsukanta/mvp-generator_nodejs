@@ -1,0 +1,67 @@
+---
+#############################################
+## Groups
+#############################################
+
+groups:
+
+- name: [[${projectName}]]
+  jobs:
+  - docker-build
+  - k8s-deploy
+ 
+#############################################
+## Resources
+#############################################
+
+resources:
+
+  - name: git-repo
+    type: git
+    source:
+      uri: git@github.com:selvendiranj/[[${projectName}]].git
+      branch: master
+      private_key: ((private-repo-key))
+
+  - name: docker-image-registry
+    type: docker-image
+    source:
+      repository: selvendiranj/[[${projectName}]]
+      tag: latest
+      username: ((dockerhub-username))
+      password: ((dockerhub-access-token))
+
+jobs:
+  - name: "docker-build"
+    public: true
+    plan:
+      - get: git-repo
+        trigger: true
+      - put: docker-image-registry
+        params:
+          build: git-repo
+
+  - name: "k8s-deploy"
+    public: true
+    plan:
+      - get: docker-image-registry
+        trigger: true
+        passed:
+          - "docker-build"
+      - task: deploy-file
+        config:
+          platform: linux
+          image_resource:
+            type: registry-image
+            source: { repository: alpine }          
+          run:
+            path: sh
+            args:
+              - -exc
+              - |
+                apk --no-cache add curl
+                curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+                chmod +x ./kubectl
+                mv ./kubectl /usr/local/bin/kubectl
+                curl https://raw.githubusercontent.com/selvendiranj/k8s-mvp/master/config -o config
+                kubectl apply -f https://raw.githubusercontent.com/selvendiranj/[[${projectName}]]/master/deployment.yml --kubeconfig=./config
