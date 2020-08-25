@@ -1,0 +1,15 @@
+{
+   "templateBase":"./templates/autoscaling",
+   "templateName":"hautoscaling.txt", 
+   "outputBase":"./output",
+   "outputFile":"hautoscaling.yml",
+   "placeholder":{
+       "projectName":"php-apache",
+       "minReplicas":"1",
+       "maxReplicas":"10",
+       "cpuAvgUtlztn":"50",
+       "memAvgUtlztn":"70",
+       "podsAvgValue":"1k",
+       "ObjAvgValue":"10k"
+   }
+  }

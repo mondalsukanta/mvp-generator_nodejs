@@ -8,3 +8,6 @@ eval(fs.readFileSync('pipelinegen.js')+'');
 
 // calling generateDeploymentFile
 eval(fs.readFileSync('deploymentgen.js')+'');
+
+// calling generateHorizontalAutoScalerFile
+eval(fs.readFileSync('hautoscaling.js')+'');
