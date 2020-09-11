@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<body>
+
+   <form id="dockerGenForm">
+      <label for="tech">Tech :</label>
+      <input type="text" id="techInput" name="txttechInput"/><br><br>
+
+      <label for="projectName">Project name:</label>
+      <input type="text" id="projectNameInput"/><br><br>
+
+      <label for="appPort">App port:</label>
+      <input type="text" id="appPortInput"/><br><br>
+
+      <label for="javaVersion">Java version:</label>
+      <input type="text" id="javaVersionInput"/><br><br>
+
+      <label for="finalName">Final name:</label>
+      <input type="text" id="finalNameInput"/><br><br>
+
+      <!-- <input id="dockerButton" type="submit" value="Docker Gen"/> -->
+
+    </form>
+    <br><br>
+    <form id="pipelineGenForm">
+
+      <label for="projectName">Project name:</label>
+      <input type="text" id="pipelineProjectNameInput"/><br><br>
+
+      <label for="appPort">App port:</label>
+      <input type="text" id="piplelineAppPortInput"/><br><br>
+
+      <!-- <input id="pipelineButton" type="submit" value="Pipeline Gen"/> -->
+
+    </form>
+    <br><br>
+    <form id="deploymentGenForm">
+
+      <label for="projectName">Project name:</label>
+      <input type="text" id="deploymentProjectNameInput"/><br><br>
+
+      <label for="appPort">App port:</label>
+      <input type="text" id="deploymentAppPortInput"/><br><br>
+
+      <!-- <input id="deploymentButton" type="submit" value="Deployment Gen"/> -->
+
+    </form>
+
+    <form id="hAutoScalingGenForm">
+
+      <label for="projectName">Project name:</label>
+      <input type="text" id="hAutoScalingProjectNameInput"/><br><br>
+
+      <label for="appPort">Min Replicas:</label>
+      <input type="text" id="minReplicas"/><br><br>
+
+      <label for="appPort">Max Replicas:</label>
+      <input type="text" id="maxReplicas"/><br><br>
+
+      <label for="javaVersion">CPU Avg Utilizn:</label>
+      <input type="text" id="cpuAvgUtlztn"/><br><br>
+
+      <label for="finalName">Mem Avg Utilizn:</label>
+      <input type="text" id="memAvgUtlztn"/><br><br>
+
+      <label for="finalName">Pods Avg Value:</label>
+      <input type="text" id="podsAvgValue"/><br><br>
+
+      <label for="finalName">Obj Avg Value:</label>
+      <input type="text" id="objAvgValue"/><br><br>
+    </form>
+    <input id="templateGenButton" type="button" value="Generate Templates"/>
+   <!-- <input id="dockerButton" type="button" value="Docker Gen"/>
+   <input id="pipelineButton" type="button" value="Pipeline Gen"/>
+   <input id="deploymentButton" type="button" value="Deployment Gen"/> -->
+<body>
+<script>
+    
+
+   $(document).ready(function(){
+      // $("#templateGen").on('submit', function(e){
+      //   e.preventDefault();
+      //   var data = $('input[name=techInput]').val();
+      //   console.log('' + data);
+      //   dockerGen();
+      // });
+
+      $('#dockerButton').click(function(){
+         console.log('calling dockerGen');
+         dockerGen();
+      });
+      $('#pipelineButton').click(function(){
+         console.log('calling pipelineGen');
+         pipelineGen();
+      });
+      $('#deploymentButton').click(function(){
+         console.log('calling deploymentGen');
+         deploymentGen();
+      });
+
+      $('#templateGenButton').click(function(){
+         console.log('calling templateGen');
+         templateGen();
+      });
+   });
+
+   function templateGen(){
+       console.log('inside templateGen');
+       
+       var techInputVal = $('#techInput').val();
+       var projectNameInputVal = $('#projectNameInput').val();
+       var appPortVal = $('#appPortInput').val();
+       var javaVersionInputVal= $('#javaVersionInput').val();
+       var finalNameInputVal = $('#finalNameInput').val();
+
+       var pipelineProjectNameInputVal = $('#pipelineProjectNameInput').val();
+      var piplelineAppPortInputVal = $('#piplelineAppPortInput').val();
+      
+      var deploymentProjectNameInputVal = $('#deploymentProjectNameInput').val();
+      var deploymentAppPortInputVal = $('#deploymentAppPortInput').val();
+
+      var hAutoScalingProjectNameInputVal = $('#hAutoScalingProjectNameInput').val();
+      var minReplicasVal = $('#minReplicas').val();
+      var maxReplicasVal = $('#maxReplicas').val();
+      var cpuAvgUtlztnVal = $('#cpuAvgUtlztn').val();
+      var memAvgUtlztnVal = $('#memAvgUtlztn').val();
+      var podsAvgValueVal = $('#podsAvgValue').val();
+      var objAvgValueVal = $('#objAvgValue').val();
+
+
+       console.log(techInputVal);
+      //  var dataToSend = "{'techInput':'" + techInputVal + "'}";
+       $.ajax({
+          type: 'post',
+          url: "http://localhost:3000/templateFileGen",
+          data: { techInput: techInputVal, projectNameInput: projectNameInputVal,
+             appPort: appPortVal, javaVersion: javaVersionInputVal, finalName: finalNameInputVal,
+            
+            pipelineProjectNameInput: pipelineProjectNameInputVal,
+            piplelineAppPortInput: piplelineAppPortInputVal,
+            
+            deploymentProjectNameInput: deploymentProjectNameInputVal,
+            deploymentAppPortInput: deploymentAppPortInputVal,
+
+            hAutoScalingProjectNameInput: hAutoScalingProjectNameInputVal,
+            minReplicas: minReplicasVal,
+            maxReplicas: maxReplicasVal,
+            cpuAvgUtlztn: cpuAvgUtlztnVal, 
+            memAvgUtlztn: memAvgUtlztnVal,
+            podsAvgValue: podsAvgValueVal,
+            objAvgValue: objAvgValueVal  },
+            
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+       });
+   }
+
+   function dockerGen(){
+       console.log('inside dockerGen');
+       
+       var techInputVal = $('#techInput').val();
+       var projectNameInputVal = $('#projectNameInput').val();
+       var appPortVal = $('#appPortInput').val();
+       var javaVersionInputVal= $('#javaVersionInput').val();
+       var finalNameInputVal = $('#finalNameInput').val();
+
+       console.log(techInputVal);
+       var dataToSend = "{'techInput':'" + techInputVal + "'}";
+       $.ajax({
+          type: 'post',
+          url: "http://localhost:3000/dockerFileGen",
+          data: { techInput: techInputVal, projectNameInput: projectNameInputVal,
+             appPort: appPortVal, javaVersion: javaVersionInputVal, finalName: finalNameInputVal},
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+       });
+   }
+
+   function pipelineGen(){
+      console.log('inside pipelineGen');
+
+      var pipelineProjectNameInputVal = $('#pipelineProjectNameInput').val();
+      var piplelineAppPortInputVal = $('#piplelineAppPortInput').val();
+
+       $.ajax({
+          type: 'post',
+          url: "http://localhost:3000/pipelineFileGen",
+          data: { pipelineProjectNameInput: pipelineProjectNameInputVal,
+            piplelineAppPortInput: piplelineAppPortInputVal},
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+       });
+      
+   } 
+
+   function deploymentGen(){
+      console.log('inside deploymentGen');
+
+      var deploymentProjectNameInputVal = $('#deploymentProjectNameInput').val();
+      var deploymentAppPortInputVal = $('#deploymentAppPortInput').val();
+
+       $.ajax({
+          type: 'post',
+          url: "http://localhost:3000/deploymentFileGen",
+          data: { deploymentProjectNameInput: deploymentProjectNameInputVal,
+            deploymentAppPortInput: deploymentAppPortInputVal},
+          contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+       });
+
+   } 
+
+    </script>
+</html>
