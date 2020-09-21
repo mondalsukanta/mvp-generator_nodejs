@@ -1,30 +1,66 @@
 <!DOCTYPE html>
 <head>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-
+   <div class="page-header">
+      <h1><small>Docker Template Form</small></h1>
+    </div>
    <form id="dockerGenForm">
+      <div class="form-group">
+         <label for="tech" class="col-sm-2 col-form-label">Tech :</label>
+         <input type="text"  class="form-control-plaintext" id="techInput" name="txtTechInput"/><br><br>
+
+         <label for="projectName" class="col-sm-2 col-form-label">Project name:</label>
+         <input type="text"  class="form-control-plaintext" id="projectNameInput"/><br><br>
+   
+         <label for="appPort" class="col-sm-2 col-form-label">App port:</label>
+         <input type="text"  class="form-control-plaintext" id="appPortInput"/><br><br>
+   
+         <label for="javaVersion" class="col-sm-2 col-form-label">Java version:</label>
+         <input type="text"  class="form-control-plaintext" id="javaVersionInput"/><br><br>
+   
+         <label for="finalName" class="col-sm-2 col-form-label">Final name:</label>
+         <input type="text"  class="form-control-plaintext" id="finalNameInput"/><br><br>
+   
+      </div>
+   </form>
+
+  <!-- <form id="dockerGenForm">
       <label for="tech">Tech :</label>
       <input type="text" id="techInput" name="txttechInput"/><br><br>
 
       <label for="projectName">Project name:</label>
-      <input type="text" id="projectNameInput"/><br><br>
+      <input type="text"  class="form-control" id="projectNameInput"/><br><br>
 
       <label for="appPort">App port:</label>
-      <input type="text" id="appPortInput"/><br><br>
+      <input type="text"  class="form-control" id="appPortInput"/><br><br>
 
       <label for="javaVersion">Java version:</label>
-      <input type="text" id="javaVersionInput"/><br><br>
+      <input type="text"  class="form-control" id="javaVersionInput"/><br><br>
 
       <label for="finalName">Final name:</label>
-      <input type="text" id="finalNameInput"/><br><br>
+      <input type="text"  class="form-control" id="finalNameInput"/><br><br>
 
-      <!-- <input id="dockerButton" type="submit" value="Docker Gen"/> -->
+    <input id="dockerButton" type="submit" value="Docker Gen"/>
+
+    </form> -->
+    <br><br>
+    <div class="page-header">
+      <h1><small>Pipeline Template Form</small></h1>
+    </div>
+    <form id="pipelineGenForm">
+      <label for="projectName" class="col-sm-2 col-form-label">Project name:</label>
+      <input type="text" class="form-control-plaintext" id="pipelineProjectNameInput"/><br><br>
+
+      <label for="appPort" class="col-sm-2 col-form-label">App port:</label>
+      <input type="text" class="form-control-plaintext" id="piplelineAppPortInput"/><br><br>
 
     </form>
-    <br><br>
-    <form id="pipelineGenForm">
+    <!-- <form id="pipelineGenForm">
 
       <label for="projectName">Project name:</label>
       <input type="text" id="pipelineProjectNameInput"/><br><br>
@@ -32,46 +68,50 @@
       <label for="appPort">App port:</label>
       <input type="text" id="piplelineAppPortInput"/><br><br>
 
-      <!-- <input id="pipelineButton" type="submit" value="Pipeline Gen"/> -->
-
-    </form>
+    </form> -->
     <br><br>
+    <div class="page-header">
+      <h1><small>Deployment Template Form</small></h1>
+    </div>
     <form id="deploymentGenForm">
 
-      <label for="projectName">Project name:</label>
-      <input type="text" id="deploymentProjectNameInput"/><br><br>
+      <label for="projectName" class="col-sm-2 col-form-label">Project name:</label>
+      <input type="text" class="form-control-plaintext" id="deploymentProjectNameInput"/><br><br>
 
-      <label for="appPort">App port:</label>
-      <input type="text" id="deploymentAppPortInput"/><br><br>
+      <label for="appPort" class="col-sm-2 col-form-label">App port:</label>
+      <input type="text" class="form-control-plaintext" id="deploymentAppPortInput"/><br><br>
 
       <!-- <input id="deploymentButton" type="submit" value="Deployment Gen"/> -->
 
     </form>
-
+    <br><br>
+    <div class="page-header">
+      <h1><small>HAutoScaling Template Form</small></h1>
+    </div>
     <form id="hAutoScalingGenForm">
 
-      <label for="projectName">Project name:</label>
-      <input type="text" id="hAutoScalingProjectNameInput"/><br><br>
+      <label for="projectName"  class="col-sm-2 col-form-label">Project name:</label>
+      <input type="text" class="form-control-plaintext" id="hAutoScalingProjectNameInput"/><br><br>
 
-      <label for="appPort">Min Replicas:</label>
-      <input type="text" id="minReplicas"/><br><br>
+      <label for="appPort" class="col-sm-2 col-form-label">Min Replicas:</label>
+      <input type="text" class="form-control-plaintext" id="minReplicas"/><br><br>
 
-      <label for="appPort">Max Replicas:</label>
-      <input type="text" id="maxReplicas"/><br><br>
+      <label for="appPort" class="col-sm-2 col-form-label">Max Replicas:</label>
+      <input type="text" class="form-control-plaintext" id="maxReplicas"/><br><br>
 
-      <label for="javaVersion">CPU Avg Utilizn:</label>
-      <input type="text" id="cpuAvgUtlztn"/><br><br>
+      <label for="javaVersion" class="col-sm-2 col-form-label">CPU Avg Utilizn:</label>
+      <input type="text" class="form-control-plaintext" id="cpuAvgUtlztn"/><br><br>
 
-      <label for="finalName">Mem Avg Utilizn:</label>
-      <input type="text" id="memAvgUtlztn"/><br><br>
+      <label for="finalName" class="col-sm-2 col-form-label">Mem Avg Utilizn:</label>
+      <input type="text" class="form-control-plaintext" id="memAvgUtlztn"/><br><br>
 
-      <label for="finalName">Pods Avg Value:</label>
-      <input type="text" id="podsAvgValue"/><br><br>
+      <label for="finalName"class="col-sm-2 col-form-label">Pods Avg Value:</label>
+      <input type="text" class="form-control-plaintext" id="podsAvgValue"/><br><br>
 
-      <label for="finalName">Obj Avg Value:</label>
-      <input type="text" id="objAvgValue"/><br><br>
-    </form>
-    <input id="templateGenButton" type="button" value="Generate Templates"/>
+      <label for="finalName" class="col-sm-2 col-form-label">Obj Avg Value:</label>
+      <input type="text" class="form-control-plaintext" id="objAvgValue"/><br><br>
+    </form><br>
+    <input id="templateGenButton" class="btn btn-default navbar-btn" type="button" value="Generate Templates"/>
    <!-- <input id="dockerButton" type="button" value="Docker Gen"/>
    <input id="pipelineButton" type="button" value="Pipeline Gen"/>
    <input id="deploymentButton" type="button" value="Deployment Gen"/> -->
@@ -115,7 +155,7 @@
        var javaVersionInputVal= $('#javaVersionInput').val();
        var finalNameInputVal = $('#finalNameInput').val();
 
-       var pipelineProjectNameInputVal = $('#pipelineProjectNameInput').val();
+      var pipelineProjectNameInputVal = $('#pipelineProjectNameInput').val();
       var piplelineAppPortInputVal = $('#piplelineAppPortInput').val();
       
       var deploymentProjectNameInputVal = $('#deploymentProjectNameInput').val();
