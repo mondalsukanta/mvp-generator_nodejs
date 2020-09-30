@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function generateDeploymentFile() {
+this.generateDeploymentFile=function  () {
+// async function generateDeploymentFile() {
    console.log(`Generating Deployment File`);
    //Read from local JSON param file 
    var config = require('./deploymentconfig.json');
@@ -57,4 +58,4 @@ async function generateDeploymentFile() {
    });
 }
 
-generateDeploymentFile();
+// generateDeploymentFile();

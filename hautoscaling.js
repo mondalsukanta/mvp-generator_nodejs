@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function generateHorizontalAutoScalerFile() {
+this.generateHorizontalAutoScalerFile=function  () {
+// async function generateHorizontalAutoScalerFile() {
    console.log(`Generating Horizontal Pod Auto Scaler File`);
    //Read from local JSON param file 
    var config = require('./hautoscaling.json');
@@ -57,4 +58,4 @@ async function generateHorizontalAutoScalerFile() {
    });
 }
 
-generateHorizontalAutoScalerFile();
+// generateHorizontalAutoScalerFile();

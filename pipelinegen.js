@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
-async function generatePipelineFile() {
+this.generatePipelineFile=function  () {
+// async function generatePipelineFile() {
    console.log(`Generating Pipeline File`);
    //Read from local JSON param file 
    var config = require('./pipelineconfig.json');
@@ -57,4 +58,4 @@ async function generatePipelineFile() {
    });
 }
 
-generatePipelineFile();
+// generatePipelineFile();

@@ -1,7 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
+this.generateDockerFile=function  () {
 
-async function generateDockerFile() {
+// async function generateDockerFile() {
    console.log(`Generating Docker File`);
    //Read from local JSON param file 
    var config = require('./dockerconfig.json');
@@ -117,4 +118,4 @@ async function generateDockerFile() {
    });
 }
 
-generateDockerFile();
+// generateDockerFile();

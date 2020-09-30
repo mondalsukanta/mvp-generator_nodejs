@@ -110,7 +110,32 @@
 
       <label for="finalName" class="col-sm-2 col-form-label">Obj Avg Value:</label>
       <input type="text" class="form-control-plaintext" id="objAvgValue"/><br><br>
-    </form><br>
+    </form><br><br><br>
+
+      <div class="row">
+         <div class="input-group">
+            <span class="input-group-addon">
+            <input type="checkbox"  id="genDockerChkBox" aria-label="...">
+            </span>
+            <label for="finalName" class="col-sm-2 col-form-label">Generate Docker </label>
+
+            <span class="input-group-addon">
+               <input type="checkbox" id="genPipelineChkBox" aria-label="...">
+            </span>
+            <label for="finalName" class="col-sm-2 col-form-label">Generate Pipeline </label>
+
+            <span class="input-group-addon">
+               <input type="checkbox" id="genDeploymentChkBox" aria-label="...">
+            </span>
+            <label for="finalName" class="col-sm-2 col-form-label">Generate Deployment </label>
+
+            <span class="input-group-addon">
+               <input type="checkbox" id="genHAutoscalingChkBox" aria-label="...">
+            </span>
+            <label for="finalName" class="col-sm-2 col-form-label">Generate HAutoscaling </label>
+         </div><!-- /input-group -->
+    <br>
+    <br>
     <input id="templateGenButton" class="btn btn-default navbar-btn" type="button" value="Generate Templates"/>
    <!-- <input id="dockerButton" type="button" value="Docker Gen"/>
    <input id="pipelineButton" type="button" value="Pipeline Gen"/>
@@ -118,6 +143,24 @@
 <body>
 <script>
     
+   //  document.getElementById('templateGenButton').addEventListener("click", sayHello()); 
+    document.getElementById('templateGenButton').addEventListener("click", function(){
+         var techInputHandle = document.getElementById('techInput');
+         var techInputValue = techInputHandle.value;
+
+         console.log('calling templateGen');
+         // alert('techInputHandle' + techInputHandle);
+         // alert('techInputValue' + techInputValue);   
+    });
+
+   //  function sayHello() {
+   //    var techInputHandle = document.getElementById('techInput');
+   //    var techInputValue = techInputHandle.value;
+
+   //    console.log('calling templateGen');
+   //    alert('techInputHandle' + techInputHandle);
+   //    alert('techInputValue' + techInputValue);
+   //  }
 
    $(document).ready(function(){
       // $("#templateGen").on('submit', function(e){
@@ -140,8 +183,9 @@
          deploymentGen();
       });
 
+
+
       $('#templateGenButton').click(function(){
-         console.log('calling templateGen');
          templateGen();
       });
    });
@@ -169,8 +213,13 @@
       var podsAvgValueVal = $('#podsAvgValue').val();
       var objAvgValueVal = $('#objAvgValue').val();
 
+      var genDockerChkBoxVal = $('#genDockerChkBox').prop('checked');
+      var genPipelineChkBoxVal = $('#genPipelineChkBox').prop('checked');
+      var genDeploymentChkBoxVal = $('#genDeploymentChkBox').prop('checked');
+      var genHAutoscalingChkBoxVal = $('#genHAutoscalingChkBox').prop('checked');
 
-       console.log(techInputVal);
+      // alert('checkbox values - ' + genDockerChkBoxVal );
+      //  console.log(techInputVal);
       //  var dataToSend = "{'techInput':'" + techInputVal + "'}";
        $.ajax({
           type: 'post',
@@ -190,7 +239,11 @@
             cpuAvgUtlztn: cpuAvgUtlztnVal, 
             memAvgUtlztn: memAvgUtlztnVal,
             podsAvgValue: podsAvgValueVal,
-            objAvgValue: objAvgValueVal  },
+            objAvgValue: objAvgValueVal,
+            genDockerChkBoxValue: genDockerChkBoxVal,
+            genPipelineChkBoxValue: genPipelineChkBoxVal,
+            genDeploymentChkBoxValue: genDeploymentChkBoxVal,
+            genHAutoscalingChkBoxValue: genHAutoscalingChkBoxVal  },
             
           contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
        });
